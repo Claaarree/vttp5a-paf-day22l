@@ -14,13 +14,13 @@ public class KindleRepository {
     public void getAuthorAverageRating(int bookCount, int limit) {
         SqlRowSet rs = template.queryForRowSet(Queries.SQL_AUTHOR_SUMMARY, bookCount, limit);
 
-        if(!rs.next()){
-            System.out.println("No authors found");
-            return;
-        }
+       while(rs.next()){
+           String author = rs.getString("author");
+           int count = rs.getInt("bk_count");
+           float bookAvg = rs.getFloat("bk_avg");
+           
+           System.out.printf("Author: %s\nCount: %d\nAverage%f\n\n", author, count, bookAvg);
+       }
 
-        String author = rs.getString("author");
-        int count = rs.getInt("bk_count");
-        float bookAvg = rs.getFloat("bk_avg");
     }
 }

@@ -9,6 +9,6 @@ public class Queries {
             group by author
             having books_count > ?
             order by books_count desc
-            limit ?
+            limit ?;
             """;
 }
